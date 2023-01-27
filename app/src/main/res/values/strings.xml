@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">FileUtility</string>
+    <string-array name="demo_list">
+        <item>File Utility</item>
+        <item>Camera Helper</item>
+        <item>Barcode Scanner</item>
+    </string-array>
 </resources>
