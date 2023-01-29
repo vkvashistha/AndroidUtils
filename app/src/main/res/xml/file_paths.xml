@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths xmlns:android="http://schemas.android.com/apk/res/android">
-<!--    When we are using External Storage to save the data then file path is as declared below -->
-    <external-path name="NOAA" path="/" />
-<!-- When we are using Internal Storage or App package to save the data then file path is declared as below-->
     <files-path
-        name="NOAA"
+        name="Photos"
         path="/"/>
 </paths>

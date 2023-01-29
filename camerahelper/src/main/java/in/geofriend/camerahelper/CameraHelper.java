@@ -75,10 +75,12 @@ public class CameraHelper implements ActivityResultCallback<ActivityResult> {
     private File createMissingDirectories(String filePath) throws IOException {
         int dirIndex = filePath.lastIndexOf(File.separator);
         File root = context.getFilesDir();
-
-        File dir = new File(root, filePath.substring(0,dirIndex));
-        dir.mkdirs();
-        String imageFileName = filePath.substring(dirIndex+1);
+        File dir = root;
+        if(dirIndex > 0) {
+            dir = new File(root, filePath.substring(0, dirIndex));
+            dir.mkdirs();
+        }
+        String imageFileName = filePath.substring(dirIndex + 1);
         File imageFile = null;
         imageFile = new File(dir, imageFileName);
         imageFile.createNewFile();

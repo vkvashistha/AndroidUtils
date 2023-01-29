@@ -3,6 +3,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="in.geofriend.androidutils">
 
+    <queries>
+
+        <!-- Browser -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+
+            <data android:scheme="http" />
+        </intent>
+
+        <!-- Camera -->
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+
+        <!-- Gallery -->
+        <intent>
+            <action android:name="android.intent.action.GET_CONTENT" />
+        </intent>
+
+        <!-- Barcode App -->
+        <intent>
+            <action android:name="com.google.zxing.client.android.SCAN" />
+        </intent>
+        <intent>
+            <action android:name="com.srowen.bs.android.SCAN" />
+        </intent>
+    </queries>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -13,6 +41,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FileUtility"
         tools:targetApi="31">
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        <activity
+            android:name=".camera.CameraActivity"
+            android:exported="false" />
         <activity
             android:name="in.geofriend.androidutils.MainActivity"
             android:exported="true">
@@ -22,7 +62,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".fileutility.FileUtilityActivity"/>
+        <activity android:name=".fileutility.FileUtilityActivity" />
     </application>
 
 </manifest>
