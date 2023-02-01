@@ -13,7 +13,9 @@ import android.widget.TextView;
 
 import in.geofriend.androidutils.camera.CameraActivity;
 import in.geofriend.androidutils.fileutility.FileUtilityActivity;
+import in.geofriend.androidutils.location.LocationActivity;
 import in.geofriend.camerahelper.CameraHelper;
+import in.geofriend.locationhelper.LocationHelper;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -44,6 +46,8 @@ public class MainActivity extends AppCompatActivity {
             case Constants.CAMERA_HELPER:
                 intent = new Intent(this, CameraActivity.class);
                 break;
+            case Constants.LOCATION_HELPER:
+                intent = new Intent(this, LocationActivity.class);
         }
         startActivity(intent);
     }

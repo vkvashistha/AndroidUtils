@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">FileUtility</string>
+    <string name="last_location">Last Location:%s</string>
+    <string name="last_location_unavailable">Last Known Location is unavailable. Try getting Current Location</string>
+    <string name="current_location">Current Location:%s</string>
     <string-array name="demo_list">
         <item>File Utility</item>
         <item>Camera Helper</item>

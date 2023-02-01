@@ -33,6 +33,7 @@ public class SAFFileManager extends FileManager{
             fileName = filePath.substring(dirIndex + 1);
             String[] dirs = filePath.substring(0, dirIndex).split("/");
             for (String dir : dirs) {
+                if(dir == null || dir.isEmpty()) continue;
                 DocumentFile existingDirectory = fileParentDirectory.findFile(dir);
                 if (existingDirectory == null) {
                     fileParentDirectory = fileParentDirectory.createDirectory(dir);

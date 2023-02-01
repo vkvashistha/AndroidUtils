@@ -16,3 +16,5 @@ rootProject.name = "AndroidUtils"
 include ':app'
 include ':fileutils'
 include ':camerahelper'
+include ':locationhelper'
+include ':permissions'
