@@ -29,13 +29,10 @@
         <intent>
             <action android:name="com.srowen.bs.android.SCAN" />
         </intent>
-    </queries>
-
-    <!-- Include this permission any time your app needs location information. -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-
-    <!-- Include only if your app benefits from precise location access. -->
+    </queries> <!-- Include this permission any time your app needs location information. -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Include only if your app benefits from precise location access. -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_SMS" />
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -47,9 +44,11 @@
         android:theme="@style/Theme.FileUtility"
         tools:targetApi="31">
         <activity
+            android:name=".smsutils.SMSDemoActivity"
+            android:exported="false" />
+        <activity
             android:name=".location.LocationActivity"
             android:exported="false" />
-
         <activity
             android:name=".camera.CameraActivity"
             android:exported="false" />
@@ -63,6 +62,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".fileutility.FileUtilityActivity" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
