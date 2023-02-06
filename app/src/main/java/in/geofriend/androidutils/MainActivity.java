@@ -18,6 +18,7 @@ import in.geofriend.androidutils.location.LocationActivity;
 import in.geofriend.androidutils.smsutils.SMSDemoActivity;
 import in.geofriend.camerahelper.CameraHelper;
 import in.geofriend.locationhelper.LocationHelper;
+import in.geofriend.logutils.LogsActivity;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -56,6 +57,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case Constants.IMAGE_PICKER:
                 intent = new Intent(this, ImageUtilsDemoActivity.class);
+                break;
+            case Constants.LOGCAT_LOGS:
+                intent = new Intent(this, LogsActivity.class);
         }
         startActivity(intent);
     }

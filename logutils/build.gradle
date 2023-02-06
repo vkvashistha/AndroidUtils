@@ -1,18 +1,16 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
 }
 
 android {
-    compileSdk 33
+    compileSdk 32
 
     defaultConfig {
-        applicationId "in.geofriend.androidutils"
         minSdk 21
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        targetSdk 32
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -32,13 +30,6 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.6.0'
     implementation 'com.google.android.material:material:1.8.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation project(path: ':fileutils')
-    implementation project(path: ':camerahelper')
-    implementation project(path: ':locationhelper')
-    implementation project(path: ':permissions')
-    implementation project(path: ':smsutils')
-    implementation project(path: ':imageutils')
-    implementation project(path: ':logutils')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
