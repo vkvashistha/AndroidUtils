@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import in.geofriend.androidutils.camera.CameraActivity;
 import in.geofriend.androidutils.fileutility.FileUtilityActivity;
+import in.geofriend.androidutils.imageutils.ImageUtilsDemoActivity;
 import in.geofriend.androidutils.location.LocationActivity;
 import in.geofriend.androidutils.smsutils.SMSDemoActivity;
 import in.geofriend.camerahelper.CameraHelper;
@@ -52,6 +53,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case Constants.SMS_UTILS:
                 intent = new Intent(this, SMSDemoActivity.class);
+                break;
+            case Constants.IMAGE_PICKER:
+                intent = new Intent(this, ImageUtilsDemoActivity.class);
         }
         startActivity(intent);
     }
