@@ -6,6 +6,8 @@ This project is aim to compile various utility and helper classes which can be u
 * CameraHelper - Take photo from Camera
 * Location Helper - Take current and last known location
 * SMS Utils - Read all SMS
+* Image Picker
+* BarcodeScanner
 ## Upcoming Utilities
 
-* BarcodeScanner
+* DebugUtils
