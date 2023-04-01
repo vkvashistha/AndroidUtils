@@ -6,6 +6,7 @@ public class Constants {
     public static final String SMS_UTILS = "SMS Utils";
     public static final String IMAGE_PICKER = "Image Picker";
     public static final String LOGCAT_LOGS = "Show Logcat Logs";
+    public static final String BARCODE_SCANNER = "Barcode Scanner";
     public static final String [] DEMOS = {
             FILE_UTILITY,
             CAMERA_HELPER,
@@ -13,5 +14,6 @@ public class Constants {
             SMS_UTILS,
             IMAGE_PICKER,
             LOGCAT_LOGS
+            BARCODE_SCANNER
     };
 }

@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import in.geofriend.androidutils.camera.CameraActivity;
+import in.geofriend.androidutils.codescanner.CodeScannerActivity;
 import in.geofriend.androidutils.fileutility.FileUtilityActivity;
 import in.geofriend.androidutils.imageutils.ImageUtilsDemoActivity;
 import in.geofriend.androidutils.location.LocationActivity;
@@ -57,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case Constants.LOGCAT_LOGS:
                 intent = new Intent(this, LogsActivity.class);
+                break;
+            case Constants.BARCODE_SCANNER:
+                intent = new Intent(this, CodeScannerActivity.class);
         }
         startActivity(intent);
     }
