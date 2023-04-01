@@ -22,7 +22,7 @@ public class LogsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("LogsActivity", "\n\n\nThis is a sample Log");
-                adapter.submitList(LogUtils.getLog());
+                adapter.submitList(LogsCapture.getLogs());
             }
         });
     }

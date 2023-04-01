@@ -19,11 +19,13 @@ import in.geofriend.androidutils.smsutils.SMSDemoActivity;
 import in.geofriend.camerahelper.CameraHelper;
 import in.geofriend.locationhelper.LocationHelper;
 import in.geofriend.logutils.LogsActivity;
+import in.geofriend.logutils.LogsCapture;
 
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LogsCapture.start();
         setContentView(R.layout.activity_main);
         LinearLayoutCompat listContainer = findViewById(R.id.listContainer);
         for(String item : Constants.DEMOS) {
@@ -31,12 +33,7 @@ public class MainActivity extends AppCompatActivity {
             TextView textView = layout.findViewById(R.id.demo_name);
             textView.setText(item);
             listContainer.addView(layout);
-            layout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onItemClicked(item);
-                }
-            });
+            layout.setOnClickListener(v -> onItemClicked(item));
         }
     }
 
