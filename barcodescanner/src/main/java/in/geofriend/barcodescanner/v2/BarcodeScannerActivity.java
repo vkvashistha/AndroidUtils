@@ -31,8 +31,6 @@ public class BarcodeScannerActivity extends AppCompatActivity {
     private static final int REQUEST_CAMERA_PERMISSION = 201;
     //This class provides methods to play DTMF tones
     private ToneGenerator toneGen1;
-    private TextView barcodeText;
-    private String barcodeData;
 
 
 
@@ -46,7 +44,6 @@ public class BarcodeScannerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_barcode_scanner);
         toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 100);
         surfaceView = findViewById(R.id.surface_view);
-        barcodeText = findViewById(R.id.barcode_text);
         initialiseDetectorsAndSources();
     }
 
