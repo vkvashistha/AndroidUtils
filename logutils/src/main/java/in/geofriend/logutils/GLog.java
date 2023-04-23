@@ -13,4 +13,16 @@ public class GLog {
     public boolean equals(@Nullable Object obj) {
         return super.equals(obj);
     }
+
+    @Override
+    public String toString() {
+        return "GLog{" +
+                "timeStamp='" + timeStamp + '\'' +
+                ", pkg='" + pkg + '\'' +
+                ", message='" + message + '\'' +
+                ", detailMessage='" + detailMessage + '\'' +
+                ", tag='" + tag + '\'' +
+                ", logLevel='" + logLevel + '\'' +
+                '}';
+    }
 }
