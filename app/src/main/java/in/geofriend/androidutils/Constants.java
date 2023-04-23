@@ -13,7 +13,7 @@ public class Constants {
             LOCATION_HELPER,
             SMS_UTILS,
             IMAGE_PICKER,
-            LOGCAT_LOGS
+            LOGCAT_LOGS,
             BARCODE_SCANNER
     };
 }

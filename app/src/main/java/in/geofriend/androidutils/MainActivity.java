@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LogsCapture.start();
+        LogsCapture.start(this);
         setContentView(R.layout.activity_main);
         LinearLayoutCompat listContainer = findViewById(R.id.listContainer);
         for(String item : Constants.DEMOS) {
