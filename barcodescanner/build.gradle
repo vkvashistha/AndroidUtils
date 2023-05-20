@@ -3,8 +3,9 @@ plugins {
     id 'maven-publish'
 }
 
+group = 'com.github.geofriendtech'
 def githubProperties = new Properties()
-//githubProperties.load(new FileInputStream(rootProject.file("github.properties"))) //Set env variable GPR_USER & GPR_API_KEY if not adding a properties file
+githubProperties.load(new FileInputStream(rootProject.file("github.properties"))) //Set env variable GPR_USER & GPR_API_KEY if not adding a properties file
 
 def getVersionName = { ->
     return "1.0.0" // Replace with version Name
@@ -17,7 +18,7 @@ def getArtificatId = { ->
 publishing {
     publications {
         bar(MavenPublication) {
-            groupId 'in.geofriend' // Replace with group ID
+            groupId 'com.github.geofriendtech' // Replace with group ID
             artifactId getArtificatId()
             version getVersionName()
             artifact("$buildDir/outputs/aar/${getArtificatId()}-release.aar")
