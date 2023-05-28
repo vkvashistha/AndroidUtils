@@ -3,6 +3,7 @@ plugins {
     id 'maven-publish'
 }
 
+group = 'com.github.geofriendtech'
 android {
     compileSdk 32
 
