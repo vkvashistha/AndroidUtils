@@ -2,15 +2,21 @@ plugins {
     id 'com.android.library'
     id 'maven-publish'
 }
+
 group = 'com.github.geofriendtech'
 
 android {
     compileSdk 33
 
+    testFixtures {
+        enable = true
+    }
     defaultConfig {
         minSdk 21
         targetSdk 33
-
+        aarMetadata {
+            minCompileSdk = 21
+        }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -21,14 +27,42 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    namespace 'in.geofriend.camerahelper'
+}
+
+def bundleReleaseTaskName = tasks.findByName('bundleRelease')?.name ?: 'bundleRelease'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.github.geofriendtech'
+            artifactId = 'camerahelper'
+            version = '1.0'
+
+            from components.findByName('release')
+        }
+    }
+    repositories {
+        maven {
+            name = 'geofriend'
+            url = "${project.buildDir}/repo"
+        }
+    }
+}
+
+afterEvaluate {
+    publishing.publications.maven.artifact(bundleReleaseTaskName) {
+        builtBy(bundleReleaseTaskName)
+    }
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.6.1'
     implementation 'com.google.android.material:material:1.9.0'
     testImplementation 'junit:junit:4.13.2'

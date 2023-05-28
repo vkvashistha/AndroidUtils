@@ -1,18 +1,21 @@
 plugins {
     id 'com.android.library'
-    id 'maven-publish'
 }
 
 group = 'com.github.geofriendtech'
+
 android {
     compileSdk 33
 
     defaultConfig {
         minSdk 21
         targetSdk 33
-
+        aarMetadata {
+            minCompileSdk = 21
+        }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
+
     }
 
     buildTypes {
@@ -24,6 +27,33 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    namespace 'in.geofriend.locationhelper'
+}
+
+def bundleReleaseTaskName = tasks.findByName('bundleRelease')?.name ?: 'bundleRelease'
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.github.geofriendtech'
+            artifactId = 'locationhelper'
+            version = '1.0'
+
+            from components.findByName('release')
+        }
+    }
+    repositories {
+        maven {
+            name = 'geofriend'
+            url = "${project.buildDir}/repo"
+        }
+    }
+}
+
+afterEvaluate {
+    publishing.publications.maven.artifact(bundleReleaseTaskName) {
+        builtBy(bundleReleaseTaskName)
     }
 }
 
