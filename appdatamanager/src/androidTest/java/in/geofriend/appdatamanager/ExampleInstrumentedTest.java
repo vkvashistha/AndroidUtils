@@ -1,4 +1,4 @@
-package com.geofriend.logger;
+package in.geofriend.appdatamanager;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.madgicaltechdom.logger.test", appContext.getPackageName());
+        assertEquals("com.madgicaltechdom.appdatamanager.test", appContext.getPackageName());
     }
 }

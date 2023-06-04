@@ -1,4 +1,4 @@
-package com.geofriend.logger;
+package in.geofriend.appdatamanager;
 
 import org.junit.Test;
 
