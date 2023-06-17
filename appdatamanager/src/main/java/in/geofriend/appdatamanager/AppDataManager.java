@@ -17,5 +17,4 @@ public class AppDataManager {
         throw new IllegalArgumentException("Storage type can only be STORAGE_TYPE_TEMPORARY, STORAGE_TYPE_SHARED_PREFERENCE, STORAGE_TYPE_DATABASE");
     }
 
-
 }

@@ -16,7 +16,6 @@ public class SqliteStorage extends AppStorage {
             @Override
             public void onCreate(SQLiteDatabase db) {
                 db.execSQL("CREATE TABLE IF NOT EXISTS APP_DATA (keyy text, value text, parentKey text)");
-                db.close();
             }
 
             @Override
@@ -32,16 +31,17 @@ public class SqliteStorage extends AppStorage {
     public SqliteStorage put(String key, Object value) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
+        values.put("keyy", key);
         if(value instanceof String) {
-            values.put(key, value.toString());
+            values.put("value", value.toString());
         } else if(value instanceof Integer) {
-            values.put(key, (Integer) value);
+            values.put("value", (Integer) value);
         } else if(value instanceof Float) {
-            values.put(key, (Float) value);
+            values.put("value", (Float) value);
         } else if(value instanceof Double) {
-            values.put(key, (Double) value);
+            values.put("value", (Double) value);
         } else if(value instanceof Boolean) {
-            values.put(key, (Boolean) value);
+            values.put("value", (Boolean) value);
         } else {
             throw new IllegalArgumentException("Value must be one of the primitive types (int, String, float, double, long, boolean");
         }

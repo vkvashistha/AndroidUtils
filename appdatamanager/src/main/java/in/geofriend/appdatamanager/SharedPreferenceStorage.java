@@ -32,6 +32,7 @@ public class SharedPreferenceStorage extends AppStorage{
             } else {
                 throw new IllegalArgumentException("Value must be one of the primitive types (int, String, float, double, long, boolean");
             }
+            values.apply();
         }
         return this;
     }

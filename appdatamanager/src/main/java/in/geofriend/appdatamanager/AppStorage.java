@@ -5,16 +5,22 @@ import android.content.Context;
 import java.util.HashMap;
 
 public class AppStorage {
-    private HashMap<String, Object> tempStorage = new HashMap<>();
+    private static HashMap<String, Object> tempStorage = new HashMap<>();
     public AppStorage withContext(Context context) {
         return this;
     }
     public AppStorage put(String key, Object value) {
+        if(tempStorage == null) {
+            tempStorage = new HashMap<>();
+        }
         tempStorage.put(key, value);
         return this;
     }
 
     public void putAsync(String key, Object value, OnDataSaved onDataSaved) {
+        if(tempStorage == null) {
+            tempStorage = new HashMap<>();
+        }
         tempStorage.put(key, value);
         if(onDataSaved != null) {
             onDataSaved.onDataSaved();
@@ -22,16 +28,25 @@ public class AppStorage {
     }
 
     public void fetchAsync(String key, OnDataFetched onDataFetched) {
+        if(tempStorage == null) {
+            tempStorage = new HashMap<>();
+        }
         if(onDataFetched!= null) {
             onDataFetched.onDataFetched(new AppData(tempStorage.get(key)));
         }
     }
 
     public AppData get(String key) {
+        if(tempStorage == null) {
+            tempStorage = new HashMap<>();
+        }
         return new AppData(tempStorage.get(key));
     }
 
     public void remove(String key) {
+        if(tempStorage == null) {
+            tempStorage = new HashMap<>();
+        }
         tempStorage.remove(key);
     }
 
