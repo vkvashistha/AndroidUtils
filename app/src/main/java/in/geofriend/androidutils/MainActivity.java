@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import in.geofriend.androidutils.appdatamanager.AppDataManagerActivity;
 import in.geofriend.androidutils.camera.CameraActivity;
 import in.geofriend.androidutils.codescanner.CodeScannerActivity;
 import in.geofriend.androidutils.fileutility.FileUtilityActivity;
@@ -19,11 +20,14 @@ import in.geofriend.androidutils.location.LocationActivity;
 import in.geofriend.androidutils.smsutils.SMSDemoActivity;
 import in.geofriend.camerahelper.CameraHelper;
 import in.geofriend.locationhelper.LocationHelper;
+import in.geofriend.logutils.LogsActivity;
+import in.geofriend.logutils.LogsCapture;
 
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        LogsCapture.start(this);
         setContentView(R.layout.activity_main);
         LinearLayoutCompat listContainer = findViewById(R.id.listContainer);
         for(String item : Constants.DEMOS) {
@@ -31,12 +35,7 @@ public class MainActivity extends AppCompatActivity {
             TextView textView = layout.findViewById(R.id.demo_name);
             textView.setText(item);
             listContainer.addView(layout);
-            layout.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onItemClicked(item);
-                }
-            });
+            layout.setOnClickListener(v -> onItemClicked(item));
         }
     }
 
@@ -58,8 +57,14 @@ public class MainActivity extends AppCompatActivity {
             case Constants.IMAGE_PICKER:
                 intent = new Intent(this, ImageUtilsDemoActivity.class);
                 break;
+            case Constants.LOGCAT_LOGS:
+                intent = new Intent(this, LogsActivity.class);
+                break;
             case Constants.BARCODE_SCANNER:
                 intent = new Intent(this, CodeScannerActivity.class);
+                break;
+            case Constants.APP_DATA_MANAGER:
+                intent = new Intent(this, AppDataManagerActivity.class);
         }
         startActivity(intent);
     }

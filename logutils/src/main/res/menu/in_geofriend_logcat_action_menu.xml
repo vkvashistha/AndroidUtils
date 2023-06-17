@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <!-- "Mark Favorite", should appear as action button if possible -->
+    <item
+        android:id="@+id/scroll_to_last"
+        android:icon="@android:drawable/arrow_down_float"
+        android:title="Scroll to Last"
+        app:showAsAction="never" />
+
+    <!-- Settings, should always be in the overflow -->
+    <item
+        android:id="@+id/sync_logs"
+        android:icon="@android:drawable/stat_notify_sync"
+        android:title="Sync Logs"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/scroll_to_top"
+        android:icon="@android:drawable/arrow_up_float"
+        android:title="Scroll to Top"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/clear_logs"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:title="Clear Logs"
+        app:showAsAction="ifRoom" />
+
+    <item android:id="@+id/send_logs"
+        android:icon="@android:drawable/ic_menu_send"
+        android:title="Send Logs"
+        app:showAsAction="ifRoom"/>
+
+</menu>

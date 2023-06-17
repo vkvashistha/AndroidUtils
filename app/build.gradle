@@ -25,12 +25,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    namespace 'in.geofriend.androidutils'
 }
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.6.0'
-    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation project(path: ':fileutils')
     implementation project(path: ':camerahelper')
@@ -38,7 +39,9 @@ dependencies {
     implementation project(path: ':permissions')
     implementation project(path: ':smsutils')
     implementation project(path: ':imageutils')
+    implementation project(path: ':logutils')
     implementation project(path: ':barcodescanner')
+    implementation project(path: ':appdatamanager')
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
