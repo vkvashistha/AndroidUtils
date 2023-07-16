@@ -1,7 +1,30 @@
 plugins {
     id 'com.android.library'
 }
-group = 'com.github.geofriendtech'
+group = 'io.github.geofriendtech'
+
+def libraryOutputName(String variantName) {
+    "fileutils-1.0-${variantName}.aar"
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'io.github.geofriendtech'
+            artifactId = 'fileutils'
+            version = '1.0'
+//            from components.release
+        }
+    }
+
+    repositories {
+        maven {
+            name = 'myrepo'
+            url = "${project.buildDir}/repo"
+        }
+    }
+}
+
 
 android {
     compileSdk 33
@@ -27,33 +50,16 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    namespace 'in.geofriend.fileutils'
-}
 
-def bundleReleaseTaskName = tasks.findByName('bundleRelease')?.name ?: 'bundleRelease'
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId = 'com.github.geofriendtech'
-            artifactId = 'fileutils'
-            version = '1.0'
-
-            from components.findByName('release')
+    libraryVariants.all { variant ->
+        variant.outputs.all { output ->
+            if (outputFileName.endsWith('.aar')) {
+                outputFileName = libraryOutputName(variant.name)
+            }
         }
     }
-    repositories {
-        maven {
-            name = 'geofriend'
-            url = "${project.buildDir}/repo"
-        }
-    }
-}
 
-afterEvaluate {
-    publishing.publications.maven.artifact(bundleReleaseTaskName) {
-        builtBy(bundleReleaseTaskName)
-    }
+    namespace 'io.github.geofriendtech.fileutils'
 }
 
 dependencies {

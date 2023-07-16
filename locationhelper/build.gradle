@@ -4,6 +4,29 @@ plugins {
 
 group = 'com.github.geofriendtech'
 
+def libraryOutputName(String variantName) {
+    "locationhelper-1.0-${variantName}.aar"
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'io.github.geofriendtech'
+            artifactId = 'locationhelper'
+            version = '1.0'
+//            from components.release
+        }
+    }
+
+    repositories {
+        maven {
+            name = 'myrepo'
+            url = "${project.buildDir}/repo"
+        }
+    }
+}
+
+
 android {
     compileSdk 33
 
@@ -28,7 +51,15 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    namespace 'in.geofriend.locationhelper'
+
+    libraryVariants.all { variant ->
+        variant.outputs.all { output ->
+            if (outputFileName.endsWith('.aar')) {
+                outputFileName = libraryOutputName(variant.name)
+            }
+        }
+    }
+    namespace 'io.github.geofriendtech.locationhelper'
 }
 
 def bundleReleaseTaskName = tasks.findByName('bundleRelease')?.name ?: 'bundleRelease'

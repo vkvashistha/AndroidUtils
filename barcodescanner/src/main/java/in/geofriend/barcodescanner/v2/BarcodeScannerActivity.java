@@ -22,7 +22,8 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
 
-import in.geofriend.barcodescanner.R;
+import io.github.geofriendtech.barcodescanner.R;
+
 
 public class BarcodeScannerActivity extends AppCompatActivity {
     private SurfaceView surfaceView;

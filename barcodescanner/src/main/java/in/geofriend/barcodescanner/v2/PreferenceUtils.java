@@ -23,7 +23,7 @@ import androidx.annotation.Nullable;
 import com.google.android.gms.common.images.Size;
 import com.google.android.gms.common.internal.Preconditions;
 
-import in.geofriend.barcodescanner.R;
+import io.github.geofriendtech.barcodescanner.R;
 
 
 /** Utility class to retrieve shared preferences. */
