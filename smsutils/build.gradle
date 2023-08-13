@@ -7,7 +7,7 @@ def libraryOutputName(String variantName) {
     "smsutils-1.0-${variantName}.aar"
 }
 
-publishing {
+/*publishing {
     publications {
         release(MavenPublication) {
             groupId = 'io.github.geofriendtech'
@@ -23,7 +23,7 @@ publishing {
             url = "${project.buildDir}/repo"
         }
     }
-}
+}*/
 
 
 android {
@@ -57,6 +57,12 @@ android {
             }
         }
     }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
     namespace 'io.github.geofriend.smsutils'
 }
 
@@ -68,3 +74,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
+
+apply from: '../publish-package.gradle'

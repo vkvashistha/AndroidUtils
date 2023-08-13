@@ -6,7 +6,7 @@ def libraryOutputName(String variantName) {
     "appdatamanager-1.0-${variantName}.aar"
 }
 
-publishing {
+/*publishing {
     publications {
         release(MavenPublication) {
             groupId = 'io.github.geofriendtech'
@@ -22,7 +22,7 @@ publishing {
             url = "${project.buildDir}/repo"
         }
     }
-}
+}*/
 
 android {
     namespace 'io.github.geofriendtech.appdatamanager'
@@ -55,6 +55,12 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
 }
 
 dependencies {
@@ -65,3 +71,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
+
+apply from: '../publish-package.gradle'

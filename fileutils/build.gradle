@@ -4,27 +4,8 @@ plugins {
 group = 'io.github.geofriendtech'
 
 def libraryOutputName(String variantName) {
-    "fileutils-1.0-${variantName}.aar"
+    "fileutils-${version}-${variantName}.aar"
 }
-
-publishing {
-    publications {
-        release(MavenPublication) {
-            groupId = 'io.github.geofriendtech'
-            artifactId = 'fileutils'
-            version = '1.0'
-//            from components.release
-        }
-    }
-
-    repositories {
-        maven {
-            name = 'myrepo'
-            url = "${project.buildDir}/repo"
-        }
-    }
-}
-
 
 android {
     compileSdk 33
@@ -58,7 +39,11 @@ android {
             }
         }
     }
-
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
+    }
     namespace 'io.github.geofriendtech.fileutils'
 }
 
@@ -70,3 +55,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
+
+apply from: '../publish-package.gradle'
