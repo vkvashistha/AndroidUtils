@@ -24,3 +24,9 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew check -x lint 
+      
+    - name: Upload app APK
+        uses: actions/upload-artifact@v1
+        with:
+          name: app-debug
+          path: app/build/outputs/apk/debug/app-debug.apk
