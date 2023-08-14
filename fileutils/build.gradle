@@ -1,7 +1,11 @@
 plugins {
     id 'com.android.library'
 }
-group = 'com.github.geofriendtech'
+group = 'io.github.geofriendtech'
+
+def libraryOutputName(String variantName) {
+    "fileutils-${version}-${variantName}.aar"
+}
 
 android {
     compileSdk 33
@@ -27,33 +31,20 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    namespace 'in.geofriend.fileutils'
-}
 
-def bundleReleaseTaskName = tasks.findByName('bundleRelease')?.name ?: 'bundleRelease'
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId = 'com.github.geofriendtech'
-            artifactId = 'fileutils'
-            version = '1.0'
-
-            from components.findByName('release')
+    libraryVariants.all { variant ->
+        variant.outputs.all { output ->
+            if (outputFileName.endsWith('.aar')) {
+                outputFileName = libraryOutputName(variant.name)
+            }
         }
     }
-    repositories {
-        maven {
-            name = 'geofriend'
-            url = "${project.buildDir}/repo"
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
         }
     }
-}
-
-afterEvaluate {
-    publishing.publications.maven.artifact(bundleReleaseTaskName) {
-        builtBy(bundleReleaseTaskName)
-    }
+    namespace 'io.github.geofriendtech.fileutils'
 }
 
 dependencies {
@@ -64,3 +55,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
+
+apply from: '../publish-package.gradle'

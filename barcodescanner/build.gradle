@@ -2,16 +2,43 @@ plugins {
     id 'com.android.library'
 }
 
-group = 'com.github.geofriendtech'
+group = 'io.github.geofriendtech'
+
+
+def libraryOutputName(String variantName) {
+    "barcodescanner-1.0-${variantName}.aar"
+}
+
+/*publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'io.github.geofriendtech'
+            artifactId = 'barcodescanner'
+            version = '1.0'
+
+            afterEvaluate {
+                from components.release
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = 'myrepo'
+            url = "${project.buildDir}/repo"
+        }
+    }
+}*/
 
 android {
-    namespace 'in.geofriend.barcodescanner'
+    namespace 'io.github.geofriendtech.barcodescanner'
     compileSdk 33
 
     defaultConfig {
         minSdk 21
         targetSdk 33
-
+        versionCode 1
+        versionName "1.0"
         aarMetadata {
             minCompileSdk = 21
         }
@@ -19,6 +46,11 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
 
+    }
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
     }
 
     buildTypes {
@@ -31,33 +63,16 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-}
 
-def bundleReleaseTaskName = tasks.findByName('bundleRelease')?.name ?: 'bundleRelease'
-
-publishing {
-    publications {
-        maven(MavenPublication) {
-            groupId = 'com.github.geofriendtech'
-            artifactId = 'barcodescanner'
-            version = '1.0'
-
-            from components.findByName('release')
-        }
-    }
-    repositories {
-        maven {
-            name = 'geofriend'
-            url = "${project.buildDir}/repo"
+    libraryVariants.all { variant ->
+        variant.outputs.all { output ->
+            if (outputFileName.endsWith('.aar')) {
+                outputFileName = libraryOutputName(variant.name)
+            }
         }
     }
 }
 
-afterEvaluate {
-    publishing.publications.maven.artifact(bundleReleaseTaskName) {
-        builtBy(bundleReleaseTaskName)
-    }
-}
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
@@ -71,3 +86,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
+
+apply from: '../publish-package.gradle'

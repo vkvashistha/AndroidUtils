@@ -2,8 +2,30 @@ plugins {
     id 'com.android.library'
 }
 
+def libraryOutputName(String variantName) {
+    "logger-1.0-${variantName}.aar"
+}
+
+/*publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'io.github.geofriendtech'
+            artifactId = 'logger'
+            version = '1.0'
+//            from components.release
+        }
+    }
+
+    repositories {
+        maven {
+            name = 'myrepo'
+            url = "${project.buildDir}/repo"
+        }
+    }
+}*/
+
 android {
-    namespace 'com.madgicaltechdom.logger'
+    namespace 'io.github.geofriendtech.logger'
     compileSdk 33
 
     defaultConfig {
@@ -20,9 +42,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    libraryVariants.all { variant ->
+        variant.outputs.all { output ->
+            if (outputFileName.endsWith('.aar')) {
+                outputFileName = libraryOutputName(variant.name)
+            }
+        }
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+        }
     }
 }
 
@@ -34,3 +71,5 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 }
+
+apply from: '../publish-package.gradle'
