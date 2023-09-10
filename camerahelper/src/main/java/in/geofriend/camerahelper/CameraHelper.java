@@ -41,8 +41,6 @@ public class CameraHelper implements ActivityResultCallback<ActivityResult> {
     public void takePhoto(Intent cameraIntent, CameraResultCallback callback) {
         this.callback = callback;
         if(cameraIntent.resolveActivity(context.getPackageManager()) != null) {
-
-
             launcher.launch(cameraIntent);
         } else {
             if(callback != null) {
